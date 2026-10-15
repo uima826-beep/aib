@@ -21,7 +21,7 @@ img{max-width:100%; display:block}
 h1,h2,h3{font-family:"Cairo","IBM Plex Sans Arabic",sans-serif; margin:0}
 
 /* Header (white) */
-.header{position:sticky; top:env(safe-area-inset-top,0px); z-index:50; background:#fff; border-bottom:1px solid var(--line); box-shadow:0 2px 12px rgba(141,19,55,.06)}
+.header{position:sticky; top:env(safe-area-inset-top,0px); z-index:50; background:#fff; box-shadow:0 0 0 1px hsla(0,0%,72%,.1),0 2px 3px hsla(0,0%,55%,.2)}
 .hrow{max-width:1160px; margin:auto; height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 18px}
 .brand{display:flex; align-items:center; gap:14px}
 .brand .logo2{height:80px; width:auto}
@@ -129,10 +129,18 @@ h1,h2,h3{font-family:"Cairo","IBM Plex Sans Arabic",sans-serif; margin:0}
 .newsletter-in{max-width:600px; margin:auto}
 .newsletter-title{color:#fff; font-weight:900; font-size:1.3rem; margin-bottom:8px; font-family:"Cairo","IBM Plex Sans Arabic",sans-serif}
 .newsletter-desc{color:#fff; font-size:.9rem; margin-bottom:16px; opacity:.9}
-.newsletter-group{display:flex; max-width:440px; margin:auto; border-radius:2px; overflow:hidden}
-.newsletter-group input{flex:1; height:48px; border:none; padding:0 14px; font-size:.95rem; font-family:inherit; outline:none}
-.newsletter-group button{height:48px; padding:0 24px; border:none; background:#5d8272; color:#fff; font-weight:700; font-size:.95rem; font-family:inherit; cursor:pointer}
-.newsletter-group button:hover{background:#4d7262}
+.newsletter-group{position:relative; max-width:440px; margin:auto}
+.newsletter-group input{background-color:#fff; color:#707070; height:55px; line-height:55px; padding:0 100px 0 15px; width:100%; border:none; border-radius:2px; font-size:.95rem; font-family:inherit; outline:none}
+.newsletter-group button{background-color:#799e91; color:#fff; font-size:1rem; height:45px; line-height:45px; padding:0 30px; position:absolute; right:5px; top:5px; border:none; border-radius:2px; font-family:inherit; cursor:pointer; z-index:2; font-weight:700}
+.newsletter-group button:hover{background:#5d8272}
+
+/* Quick links */
+.quick-links{background:#f9f9f9; padding:40px 16px}
+.quick-links-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:600px; margin:auto}
+.quick-link{background:#fff; border-radius:2px; box-shadow:-16px 28px 40px rgba(0,0,0,.06); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:30px 15px; text-decoration:none; transition:box-shadow .3s}
+.quick-link:hover{box-shadow:-16px 28px 40px rgba(0,0,0,.12)}
+.quick-link svg{width:40px; height:40px; color:#799e91; margin-bottom:12px}
+.quick-link span{color:#707070; font-weight:700; font-size:.95rem; text-align:center}
 
 .ft-accordion{border-top:1px solid #ddd}
 .ft-acc-item{border-bottom:1px solid rgba(255,255,255,.2)}
@@ -164,8 +172,8 @@ h1,h2,h3{font-family:"Cairo","IBM Plex Sans Arabic",sans-serif; margin:0}
 .chat-float svg{width:28px; height:28px; fill:#fff}
 .a11y-float{position:fixed; bottom:80px; left:16px; z-index:100; width:50px; height:50px; border-radius:50%; background:#F5C542; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,.15)}
 .a11y-float svg{width:24px; height:24px; fill:#333}
-.mobile-bar{position:fixed; bottom:0; left:0; right:0; z-index:99; background:#fff; border-top:1px solid #e0e0e0; display:flex; align-items:stretch; height:52px; padding-bottom:env(safe-area-inset-bottom,0px)}
-.mobile-bar a,.mobile-bar button{flex:1; display:flex; align-items:center; justify-content:center; background:none; border:none; border-inline-start:1px solid #e0e0e0; color:#7a5c6a; font-size:.85rem; font-weight:700; cursor:pointer; text-decoration:none; font-family:inherit; padding:0}
+.mobile-bar{position:fixed; bottom:0; left:0; right:0; z-index:99; background:#fff; box-shadow:0 0 0 1px hsla(0,0%,72%,.1),0 2px 3px hsla(0,0%,55%,.2); display:flex; align-items:stretch; height:52px; margin:0 20px; border-radius:2px 2px 0 0; padding-bottom:env(safe-area-inset-bottom,0px)}
+.mobile-bar a,.mobile-bar button{flex:1; display:flex; align-items:center; justify-content:center; background:none; border:none; border-inline-start:1px solid #f7e1f2; color:#a32786; font-size:.85rem; font-weight:700; cursor:pointer; text-decoration:none; font-family:inherit; padding:0}
 .mobile-bar a:first-child,.mobile-bar button:first-child{border-inline-start:none}
 .mobile-bar svg{width:22px; height:22px}
 body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
@@ -349,6 +357,28 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
   </div>
 </div>
 
+<!-- Quick Links -->
+<div class="quick-links">
+  <div class="quick-links-grid">
+    <a href="#" class="quick-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      <span>Exchange Rates</span>
+    </a>
+    <a href="#" class="quick-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/><circle cx="15" cy="18" r="1"/></svg>
+      <span>Financing Calculator</span>
+    </a>
+    <a href="#" class="quick-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg>
+      <span>IBAN Number</span>
+    </a>
+    <a href="#" class="quick-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span>Contact Us</span>
+    </a>
+  </div>
+</div>
+
 <!-- Newsletter -->
 <div class="newsletter">
   <div class="newsletter-in">
@@ -478,9 +508,8 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 <nav class="mobile-bar">
   <a href="#" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></a>
   <a href="#" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></a>
-  <a href="index.html" style="font-weight:700;font-size:.95rem;color:#7a5c6a">عربي</a>
+  <a href="index.html" style="font-weight:700;font-size:.95rem">عربي</a>
   <a href="#" aria-label="My Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
-  <a href="#" aria-label="Chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></a>
 </nav>
 
 <script>
