@@ -112,13 +112,13 @@ textarea.input{height:auto; padding:10px 14px; min-height:80px; resize:vertical;
 .ft-social-icons a:hover{border-color:var(--green); color:var(--green)}
 .ft-social-icons a svg{width:18px; height:18px}
 .share-bar{display:flex; align-items:center; justify-content:center; gap:10px; padding:14px 16px}
-.share-bar .share-title{font-weight:700; font-size:.95rem; color:#333}
-.share-bar a{width:36px; height:36px; border-radius:50%; background:#e8e8e8; color:#555; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all .2s}
-.share-bar a:hover{background:var(--green); color:#fff}
-.share-bar a svg{width:16px; height:16px}
+.share-bar .share-title{font-weight:700; font-size:1.05rem; color:#707070; padding-inline-end:10px}
+.share-bar a{width:27px; height:27px; border-radius:2px; background:#707070; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all .2s}
+.share-bar a:hover{background:#fff; color:#707070}
+.share-bar a svg{width:14px; height:14px}
 .ft-accordion{border-top:1px solid #ddd}
 .ft-acc-item{border-bottom:1px solid rgba(255,255,255,.2)}
-.ft-acc-title{display:flex; align-items:center; justify-content:space-between; background:#8a9e8f; color:#fff; padding:14px 20px; cursor:pointer; font-weight:700; font-size:.95rem; border:none; width:100%; text-align:right; font-family:inherit; direction:rtl}
+.ft-acc-title{display:flex; align-items:center; justify-content:space-between; background:#799e91; color:#fff; padding:8px 15px; cursor:pointer; font-weight:700; font-size:.95rem; border:none; width:100%; text-align:right; font-family:inherit; direction:rtl; border-radius:2px}
 .ft-acc-title svg{width:18px; height:18px; transition:transform .3s; flex-shrink:0}
 .ft-acc-title.open svg{transform:rotate(180deg)}
 .ft-acc-content{display:none; background:#fff; padding:16px 20px}
@@ -130,8 +130,8 @@ textarea.input{height:auto; padding:10px 14px; min-height:80px; resize:vertical;
 .ft-acc-content a:hover{color:var(--green)}
 .ft-acc-content .ft-phone{color:#333; font-size:1rem; font-weight:600; text-decoration:none; display:block; padding:4px 0}
 .ft-acc-social{display:flex; gap:10px; flex-wrap:wrap}
-.ft-acc-social a{width:36px; height:36px; border-radius:50%; background:#8a9e8f; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none}
-.ft-acc-social a svg{width:16px; height:16px}
+.ft-acc-social a{width:23px; height:23px; border-radius:2px; background:#799e91; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none; border:1px solid #799e91}
+.ft-acc-social a svg{width:11px; height:11px}
 .ft-acc-logo{margin-top:16px}
 .ft-acc-logo img{height:40px; width:auto}
 .sub-footer{text-align:center; padding:20px 16px; border-top:1px solid #ddd}
@@ -414,15 +414,6 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
   </div>
 </div>
 
-<!-- Floating chat button -->
-<button class="chat-float" onclick="window.open('https://wa.me/970566242242','_blank')">
-  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
-</button>
-
-<!-- Accessibility button -->
-<button class="a11y-float" aria-label="إمكانية الوصول">
-  <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 100 4 2 2 0 000-4zm-2 7h4l1 5h-1l-1 5h-2l-1-5H9l1-5z"/><circle cx="12" cy="4" r="2"/><path d="M12 7c-1.1 0-2 .2-2.8.5L10 11h4l.8-3.5C14 7.2 13.1 7 12 7zM10 11l-1 6h2l-.5-6zm4 0l.5 6h-2l1-6z"/></svg>
-</button>
 
 <!-- Bottom mobile bar -->
 <nav class="mobile-bar">
