@@ -198,12 +198,9 @@ textarea.input{height:auto; padding:9px 12px; min-height:72px; resize:vertical; 
 </head>
 <body class="ltr">
 <header class="header">
-  <div class="hrow">
+  <div class="hrow" style="justify-content:center">
     <div class="brand">
-      <img class="logo2" src="qnb-logo-new.jpg" alt="QNB">
-    </div>
-    <div class="hicons">
-      <button class="lang" id="langBtn">العربية</button>
+      <a href="index-en.html"><img class="logo2" src="https://aib.ps/uc_files/image/resize/226/53/app_files/logopng_16691947964653877586094.png?vsig=fe3b85fa430300011345c623e9bc93d1" alt="Arab Islamic Bank" style="height:44px"></a>
     </div>
   </div>
 </header>
@@ -415,7 +412,7 @@ textarea.input{height:auto; padding:9px 12px; min-height:72px; resize:vertical; 
 const LINKS = {home:"index-en.html", alt:"order.html", summary:"summary-en.html"};
 const $ = id => document.getElementById(id);
 const goTo = url => { window.location.href = url; };
-$("langBtn").onclick = () => goTo(LINKS.alt + location.hash);
+if($("langBtn")) $("langBtn").onclick = () => goTo(LINKS.alt + location.hash);
 
 const BANKS = ['Doha', 'Al Rayyan', 'Al Wakrah', 'Umm Salal', 'Al Khor and Al Dakhira', 'Al Shamal', 'Al Daayen', 'Al Shahaniya'];
 const [hPlan, hData] = location.hash.slice(1).split("~");

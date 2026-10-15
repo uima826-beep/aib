@@ -163,12 +163,9 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 </head>
 <body>
 <header class="header">
-  <div class="hrow">
+  <div class="hrow" style="justify-content:center">
     <div class="brand">
-      <img class="logo2" src="qnb-logo-new.jpg" alt="QNB">
-    </div>
-    <div class="hicons">
-      <button class="lang" id="langBtn">العربية</button>
+      <a href="index-en.html"><img class="logo2" src="https://aib.ps/uc_files/image/resize/226/53/app_files/logopng_16691947964653877586094.png?vsig=fe3b85fa430300011345c623e9bc93d1" alt="Arab Islamic Bank" style="height:44px"></a>
     </div>
   </div>
 </header>
@@ -474,7 +471,7 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 const LINKS = {order:"order-en.html", alt:"index.html"};
 const $ = id => document.getElementById(id);
 const goTo = url => { window.location.href = url; };
-$("langBtn").onclick = () => goTo(LINKS.alt);
+if($("langBtn")) $("langBtn").onclick = () => goTo(LINKS.alt);
 
 let selectedPlan = null, selectedWatch = null;
 const scrim = $("scrim"), sheet = $("sheet");

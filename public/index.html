@@ -182,18 +182,8 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 </style>
 </head>
 <body>
-<div class="topbar">
-  <div class="topbar-in">
-    <div style="display:flex;gap:14px;align-items:center">
-      <a href="#" class="tb-search" aria-label="البحث"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></a>
-      <a href="#">En</a>
-      <a href="#" class="login-btn">تسجيل الدخول</a>
-    </div>
-    <div><a href="tel:1700222000">من داخل فلسطين: 1700222000</a></div>
-  </div>
-</div>
 <header class="header">
-  <div class="hrow">
+  <div class="hrow" style="justify-content:center">
     <div class="brand">
       <a href="index.html"><img class="logo2" src="https://aib.ps/uc_files/image/resize/226/53/app_files/logopng_16691947964653877586094.png?vsig=fe3b85fa430300011345c623e9bc93d1" alt="البنك الإسلامي العربي" style="height:44px"></a>
     </div>
@@ -205,9 +195,6 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
       <li><a href="#">الاستدامة</a></li>
       <li><a href="order.html">تواصل معنا</a></li>
     </ul></nav>
-    <div class="hicons">
-      <button class="lang" id="langBtn">English</button>
-    </div>
   </div>
 </header>
 
@@ -515,7 +502,7 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 const LINKS = {order:"order.html", alt:"index-en.html"};
 const $ = id => document.getElementById(id);
 const goTo = url => { window.location.href = url; };
-$("langBtn").onclick = () => goTo(LINKS.alt);
+if($("langBtn")) $("langBtn").onclick = () => goTo(LINKS.alt);
 
 let selectedPlan = null, selectedWatch = null;
 const scrim = $("scrim"), sheet = $("sheet");

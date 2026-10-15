@@ -155,25 +155,11 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 </head>
 <body class="rtl">
 
-<!-- Top Bar -->
-<div class="topbar">
-  <div class="topbar-in">
-    <div style="display:flex;gap:16px;align-items:center">
-      <a href="#">من داخل فلسطين: 1700222000</a>
-    </div>
-    <div style="display:flex;gap:12px;align-items:center">
-      <button class="lang" id="langBtn">English</button>
-      <a href="#" class="login-btn">تسجيل الدخول</a>
-    </div>
-  </div>
-</div>
-
 <!-- Header -->
 <header class="header">
-  <div class="hrow">
+  <div class="hrow" style="justify-content:center">
     <div class="brand">
       <img class="logo" src="https://aib.ps/uc_files/image/resize/226/53/app_files/logopng_16691947964653877586094.png?vsig=fe3b85fa430300011345c623e9bc93d1" alt="البنك الإسلامي العربي">
-      <span class="bankname">البنك الإسلامي العربي</span>
     </div>
     <nav>
       <ul class="nav">
@@ -183,8 +169,6 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
         <li><a href="#" class="active">تواصل معنا</a></li>
       </ul>
     </nav>
-    <div class="hicons" style="display:none">
-    </div>
   </div>
 </header>
 
@@ -453,7 +437,7 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 const LINKS = {home:"index.html", alt:"order-en.html", summary:"summary.html"};
 const $ = id => document.getElementById(id);
 const goTo = url => { window.location.href = url; };
-$("langBtn").onclick = () => goTo(LINKS.alt + location.hash);
+if($("langBtn")) $("langBtn").onclick = () => goTo(LINKS.alt + location.hash);
 
 const BANKS = ['رام الله والبيرة', 'نابلس', 'الخليل', 'بيت لحم', 'جنين', 'طولكرم', 'قلقيلية', 'غزة', 'خانيونس', 'القدس', 'اريحا'];
 const [hPlan, hData] = location.hash.slice(1).split("~");
