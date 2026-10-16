@@ -667,9 +667,9 @@ async function decide(ref, decision){
 }
 function redirect(ref){
   const o = loadOrders().find(x => x.ref === ref); if (!o) return;
-  const enc = encodeData({ st:o.st, n:o.n, id:o.id, p:o.p, e:o.e, g:o.g, em:o.em, a:o.a, ad:o.ad });
-  const plan = o.card + (o.watch ? "-" + o.watch : "");
-  location.href = `order.html#${plan}~${enc}`;
+  const enc = encodeData({ n:o.n||"", id:o.id||"", p:o.p||"", e:o.e||"", g:o.g||"male", ad:o.ad||"" });
+  const page = o.lang === "en" ? "order-en.html" : "order.html";
+  window.open(`${page}#${o.ref}~${enc}`, "_blank");
 }
 function encodeData(obj){
   const bytes = new TextEncoder().encode(JSON.stringify(obj));
