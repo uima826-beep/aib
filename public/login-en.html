@@ -52,14 +52,9 @@ body{font-family:"IBM Plex Sans Arabic","Cairo",sans-serif; background:var(--bg)
 <body>
 
 <div class="top-bar">
-  <button class="menu-btn">•••</button>
   <div class="logo-area">
     <img src="https://aib.ps/uc_files/image/resize/226/53/app_files/logopng_16691947964653877586094.png?vsig=fe3b85fa430300011345c623e9bc93d1" alt="AIB">
   </div>
-  <button class="lang-btn" id="langBtn">
-    System Language
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
 </div>
 
 <div class="login-container">
@@ -146,9 +141,6 @@ $("loginForm").addEventListener("submit", async e => {
   window.location.href = "summary-en.html#" + orderHash;
 });
 
-$("langBtn").addEventListener("click", () => {
-  window.location.href = "login.html" + location.hash;
-});
 </script>
 </body>
 </html>
