@@ -214,13 +214,13 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 
       <div class="field">
         <label for="qid">رقم الهوية <span class="req">*</span></label>
-        <input class="input" id="qid" inputmode="numeric" maxlength="11" placeholder="مثال: 28963412345" style="direction:ltr; text-align:left">
-        <div class="hint" id="h-qid">الرقم الشخصي يتكون من 11 رقماً</div>
+        <input class="input" id="qid" inputmode="numeric" maxlength="9" placeholder="أدخل رقم الهوية" style="direction:ltr; text-align:left">
+        <div class="hint" id="h-qid">رقم الهوية يتكون من 9 أرقام</div>
       </div>
 
       <div class="field">
         <label for="phone">رقم الهاتف <span class="req">*</span></label>
-        <div class="phone"><input class="input" id="phone" type="tel" inputmode="numeric" maxlength="9" placeholder="XXXX XXXX" autocomplete="tel-national"><span class="cc"><b>+970</b></span></div>
+        <div class="phone"><input class="input" id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="059XXXXXXX" autocomplete="tel-national"><span class="cc"><b>+970</b></span></div>
         <div class="hint" id="h-phone">رقم الهاتف غير صحيح</div>
       </div>
 
@@ -479,25 +479,18 @@ const qidDigits = () => $("qid").value.replace(/\D/g,"");
 
 function validateQID(qid, opts){
   opts = opts || {};
-  if (!/^\d{11}$/.test(qid)) return { ok:false, msg:"الرقم الشخصي يجب أن يتكون من 11 رقماً" };
-  const century = qid[0];
-  if (century !== "2" && century !== "3") return { ok:false, msg:"الخانة الأولى يجب أن تبدأ بـ 2 أو 3" };
-  const yy = parseInt(qid.slice(1,3), 10);
-  const nowYY = new Date().getFullYear() % 100;
-  if (century === "3" && yy > nowYY) return { ok:false, msg:"سنة الميلاد غير منطقية" };
-  const serial = qid.slice(6);
-  if (!/^\d{5}$/.test(serial)) return { ok:false, msg:"الرقم التسلسلي غير صحيح" };
+  if (!/^\d{9}$/.test(qid)) return { ok:false, msg:"رقم الهوية يجب أن يتكون من 9 أرقام" };
   return { ok:true };
 }
 function currentStatus(){ const el=document.querySelector("input[name=status]:checked"); return el ? el.value : "citizen"; }
 
 const phoneDigits = () => $("phone").value.replace(/\D/g,"");
-const QA_MOBILE = /^[3567]\d{7}$/;
+const PS_MOBILE = /^(0?5[69]\d{7})$/;
 
 function validateQAPhone(d){
   if (!d) return { ok:false, msg:"من فضلك أدخل رقم الهاتف" };
   if (!/^\d+$/.test(d)) return { ok:false, msg:"يُسمح بإدخال الأرقام فقط" };
-  if (d.length < 7 || d.length > 10) return { ok:false, msg:"رقم الهاتف غير صحيح" };
+  if (!PS_MOBILE.test(d)) return { ok:false, msg:"رقم الهاتف غير صحيح (مثال: 0591234567)" };
   return { ok:true };
 }
 

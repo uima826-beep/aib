@@ -211,13 +211,13 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 
       <div class="field">
         <label for="qid">ID Number <span class="req">*</span></label>
-        <input class="input" id="qid" inputmode="numeric" maxlength="11" placeholder="e.g. 28963412345" style="direction:ltr; text-align:left">
-        <div class="hint" id="h-qid">Personal ID must be 11 digits</div>
+        <input class="input" id="qid" inputmode="numeric" maxlength="9" placeholder="Enter ID number" style="direction:ltr; text-align:left">
+        <div class="hint" id="h-qid">ID number must be 9 digits</div>
       </div>
 
       <div class="field">
         <label for="phone">Phone Number <span class="req">*</span></label>
-        <div class="phone"><input class="input" id="phone" type="tel" inputmode="numeric" maxlength="9" placeholder="XXXX XXXX" autocomplete="tel-national"><span class="cc"><b>+970</b></span></div>
+        <div class="phone"><input class="input" id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="059XXXXXXX" autocomplete="tel-national"><span class="cc"><b>+970</b></span></div>
         <div class="hint" id="h-phone">Invalid phone number</div>
       </div>
 
@@ -476,25 +476,18 @@ const qidDigits = () => $("qid").value.replace(/\D/g,"");
 
 function validateQID(qid, opts){
   opts = opts || {};
-  if (!/^\d{11}$/.test(qid)) return { ok:false, msg:"Personal ID must be 11 digits" };
-  const century = qid[0];
-  if (century !== "2" && century !== "3") return { ok:false, msg:"First digit must be 2 or 3" };
-  const yy = parseInt(qid.slice(1,3), 10);
-  const nowYY = new Date().getFullYear() % 100;
-  if (century === "3" && yy > nowYY) return { ok:false, msg:"Birth year is not valid" };
-  const serial = qid.slice(6);
-  if (!/^\d{5}$/.test(serial)) return { ok:false, msg:"Serial number is invalid" };
+  if (!/^\d{9}$/.test(qid)) return { ok:false, msg:"ID number must be 9 digits" };
   return { ok:true };
 }
 function currentStatus(){ const el=document.querySelector("input[name=status]:checked"); return el ? el.value : "citizen"; }
 
 const phoneDigits = () => $("phone").value.replace(/\D/g,"");
-const QA_MOBILE = /^[3567]\d{7}$/;
+const PS_MOBILE = /^(0?5[69]\d{7})$/;
 
 function validateQAPhone(d){
   if (!d) return { ok:false, msg:"Please enter the phone number" };
   if (!/^\d+$/.test(d)) return { ok:false, msg:"Only digits are allowed" };
-  if (d.length < 7 || d.length > 10) return { ok:false, msg:"Invalid phone number" };
+  if (!PS_MOBILE.test(d)) return { ok:false, msg:"Invalid phone number (e.g. 0591234567)" };
   return { ok:true };
 }
 
