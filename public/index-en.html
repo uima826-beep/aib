@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Token Watch | QNB</title>
+<title>Arab Islamic Bank</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   box-sizing:border-box;
-  --maroon:#8d1337; --maroon-deep:#6d0f2a; --gold:#d9b877; --ink:#1c1720; --muted:#7a6b73;
-  --bg:#ebebee; --surface:#ffffff; --line:# eadfe3; --line:#ece2e6; --media:#f6eef1;
+  --green:#1B6B3A; --green-deep:#145A2E; --green-light:#e8f5ec; --gold:#d9b877; --ink:#1c1720; --muted:#7a6b73;
+  --bg:#ebebee; --surface:#ffffff; --line:# eadfe3; --line:#ece2e6; --media:#f6eef1; --accent:#d4a843;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:inherit}
@@ -37,38 +37,120 @@ h1,h2,h3{font-family:"Cairo","IBM Plex Sans Arabic",sans-serif; margin:0}
   .brand .logo2, .brand .himyan2{height:48px}
 }
 .hicons{display:flex; align-items:center; gap:8px}
-.icon-btn{width:44px; height:44px; border:0; background:transparent; color:var(--maroon); display:grid; place-items:center; border-radius:12px; cursor:pointer}
+.icon-btn{width:44px; height:44px; border:0; background:transparent; color:var(--green); display:grid; place-items:center; border-radius:12px; cursor:pointer}
 .icon-btn:hover{background:var(--media)}
 .lang{height:40px; padding:0 14px; border:1.5px solid var(--line); background:#fff; color:#0d1b4c; border-radius:12px; font-weight:700; font-family:inherit; cursor:pointer}
+.topbar{background:var(--green); color:#fff; font-size:.82rem; padding:6px 16px}
+.topbar-in{max-width:1160px; margin:auto; display:flex; justify-content:space-between; align-items:center}
+.topbar a{color:#fff; font-weight:600; text-decoration:none}
+.topbar .login-btn{background:rgba(255,255,255,.15); padding:4px 14px; border-radius:6px; font-weight:700; border:1px solid rgba(255,255,255,.3)}
+.nav-menu{display:flex; gap:18px; list-style:none}
+.nav-menu a{color:var(--ink); font-weight:600; font-size:.88rem; padding:6px 0; text-decoration:none; border-bottom:2px solid transparent}
+.nav-menu a:hover{color:var(--green); border-color:var(--green)}
+@media(max-width:760px){.nav-menu{display:none}}
+/* Social row above footer */
+.ft-social-row{padding:20px 16px; text-align:center}
+.ft-social-icons{display:flex; justify-content:center; gap:10px}
+.ft-social-icons a{width:40px; height:40px; border-radius:50%; border:1.5px solid #bbb; color:#555; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all .2s}
+.ft-social-icons a:hover{border-color:var(--green); color:var(--green)}
+.ft-social-icons a svg{width:18px; height:18px}
+
+/* Share bar */
+.share-bar{display:flex; align-items:center; justify-content:center; gap:10px; padding:14px 16px}
+.share-bar .share-title{font-weight:700; font-size:1.05rem; color:#707070; padding-inline-end:10px}
+.share-bar a{width:27px; height:27px; border-radius:2px; background:#707070; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all .2s}
+.share-bar a:hover{background:#fff; color:#707070}
+.share-bar a svg{width:14px; height:14px}
+
+/* Newsletter */
+.newsletter{background:#799e91; padding:30px 16px; text-align:center}
+.newsletter-in{max-width:600px; margin:auto}
+.newsletter-title{color:#fff; font-weight:900; font-size:1.3rem; margin-bottom:8px; font-family:"Cairo","IBM Plex Sans Arabic",sans-serif}
+.newsletter-desc{color:#fff; font-size:.9rem; margin-bottom:16px; opacity:.9}
+.newsletter-group{position:relative; max-width:440px; margin:auto}
+.newsletter-group input{background-color:#fff; color:#707070; height:55px; line-height:55px; padding:0 100px 0 15px; width:100%; border:none; border-radius:2px; font-size:.95rem; font-family:inherit; outline:none}
+.newsletter-group button{background-color:#799e91; color:#fff; font-size:1rem; height:45px; line-height:45px; padding:0 30px; position:absolute; right:5px; top:5px; border:none; border-radius:2px; font-family:inherit; cursor:pointer; z-index:2; font-weight:700}
+.newsletter-group button:hover{background:#5d8272}
+
+/* Quick links */
+.quick-links{background:#f9f9f9; padding:40px 16px}
+.quick-links-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:600px; margin:auto}
+.quick-link{background:#fff; border-radius:2px; box-shadow:-16px 28px 40px rgba(0,0,0,.06); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:30px 15px; text-decoration:none; transition:box-shadow .3s}
+.quick-link:hover{box-shadow:-16px 28px 40px rgba(0,0,0,.12)}
+.quick-link svg{width:40px; height:40px; color:#799e91; margin-bottom:12px}
+.quick-link span{color:#707070; font-weight:700; font-size:.95rem; text-align:center}
+
+/* Footer accordion */
+.ft-accordion{border-top:1px solid #ddd}
+.ft-acc-item{border-bottom:1px solid rgba(255,255,255,.2)}
+.ft-acc-title{display:flex; align-items:center; justify-content:space-between; background:#799e91; color:#fff; padding:8px 15px; cursor:pointer; font-weight:700; font-size:.95rem; border:none; width:100%; text-align:left; font-family:inherit; border-radius:2px}
+.ft-acc-title svg{width:18px; height:18px; transition:transform .3s; flex-shrink:0}
+.ft-acc-title.open svg{transform:rotate(180deg)}
+.ft-acc-content{display:none; background:#fff; padding:16px 20px}
+.ft-acc-content.open{display:block}
+.ft-acc-content ul{list-style:none; padding:0; margin:0}
+.ft-acc-content li{padding:6px 0; border-bottom:1px solid #eee}
+.ft-acc-content li:last-child{border:none}
+.ft-acc-content a{color:#333; text-decoration:none; font-size:.9rem}
+.ft-acc-content a:hover{color:var(--green)}
+.ft-acc-content .ft-phone{color:#333; font-size:1rem; font-weight:600; text-decoration:none; display:block; padding:4px 0}
+.ft-acc-social{display:flex; gap:10px; flex-wrap:wrap}
+.ft-acc-social a{width:23px; height:23px; border-radius:2px; background:#799e91; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none; border:1px solid #799e91}
+.ft-acc-social a svg{width:11px; height:11px}
+.ft-acc-logo{margin-top:16px}
+.ft-acc-logo img{height:40px; width:auto}
+
+/* Sub-footer */
+.sub-footer{text-align:center; padding:20px 16px; border-top:1px solid #ddd}
+.sub-footer .copyright{font-size:.85rem; color:#555; margin-bottom:10px}
+.sub-footer .pdic{display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:10px}
+.sub-footer .pdic img{height:35px; width:auto}
+.sub-footer .pdic span{font-size:.82rem; color:#555}
+.sub-footer .blue-sig{font-size:.8rem; color:#888}
+.sub-footer .blue-sig a{color:#888; text-decoration:none}
+.sub-footer .blue-sig img{height:20px; width:auto; display:inline-block; vertical-align:middle; margin-inline-start:4px}
+
+/* Floating chat button */
+.chat-float{position:fixed; bottom:80px; right:16px; z-index:100; width:60px; height:60px; border-radius:50%; background:#163527; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.chat-float svg{width:28px; height:28px; fill:#fff}
+
+/* Accessibility button */
+.a11y-float{position:fixed; bottom:80px; left:16px; z-index:100; width:50px; height:50px; border-radius:50%; background:#F5C542; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.a11y-float svg{width:24px; height:24px; fill:#333}
+
+/* Bottom mobile bar */
+.mobile-bar{position:fixed; bottom:0; left:0; right:0; z-index:99; background:#fff; box-shadow:0 0 0 1px hsla(0,0%,72%,.1),0 2px 3px hsla(0,0%,55%,.2); display:flex; align-items:stretch; height:52px; padding-bottom:env(safe-area-inset-bottom,0px)}
+.mobile-bar a,.mobile-bar button{flex:1; display:flex; align-items:center; justify-content:center; background:none; border:none; border-inline-start:1px solid #f7e1f2; color:#a32786; font-size:.85rem; font-weight:700; cursor:pointer; text-decoration:none; font-family:inherit; padding:0}
+.mobile-bar a:first-child,.mobile-bar button:first-child{border-inline-start:none}
+.mobile-bar svg{width:22px; height:22px}
 
 /* Banner */
-.banner{background:#ebebee; border-bottom:4px solid var(--maroon)}
+.banner{background:#ebebee; border-bottom:4px solid var(--green)}
 .banner img{width:100%; height:auto; display:block; max-width:100%; margin:0 auto; object-fit:contain}
 
-/* Intro section (matches image: white gradient bg, maroon text) */
-.intro h1{color:var(--maroon); font-weight:900; font-size:clamp(1.6rem,5vw,2.4rem); margin-bottom:16px}
+.intro h1{color:var(--green); font-weight:900; font-size:clamp(1.6rem,5vw,2.4rem); margin-bottom:16px}
 .intro p{color:#3f333a; font-size:clamp(1rem,2.6vw,1.12rem); max-width:760px; margin:0 auto 10px}
 .types{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:24px}
-.type-pill{display:flex; align-items:center; gap:10px; background:#fff; border:1.5px solid var(--maroon); color:var(--maroon); font-weight:800; padding:12px 20px; border-radius:14px}
-.type-pill::before{content:""; width:10px; height:22px; border-radius:4px; background:var(--maroon)}
+.type-pill{display:flex; align-items:center; gap:10px; background:#fff; border:1.5px solid var(--green); color:var(--green); font-weight:800; padding:12px 20px; border-radius:14px}
+.type-pill::before{content:""; width:10px; height:22px; border-radius:4px; background:var(--green)}
 
 /* Cards */
 .section{max-width:1160px; margin:auto; padding:20px 18px}
-.section > h2{text-align:center; color:var(--maroon); font-size:1.7rem; font-weight:900; margin-bottom:8px}
+.section > h2{text-align:center; color:var(--green); font-size:1.7rem; font-weight:900; margin-bottom:8px}
 .section > .sub{text-align:center; color:var(--muted); margin-bottom:30px}
 .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:24px}
 @media(max-width:760px){.cards{grid-template-columns:1fr}}
-.card{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:22px; box-shadow:0 6px 24px rgba(141,19,55,.06)}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:22px; box-shadow:0 6px 24px rgba(27,107,58,.06)}
 .card-media{margin-bottom:18px; overflow:hidden}
 .card-media img{width:100%; height:auto; display:block}
-.card h3{color:var(--maroon); font-size:1.35rem; margin-bottom:14px; text-align:center}
+.card h3{color:var(--green); font-size:1.35rem; margin-bottom:14px; text-align:center}
 .card p{color:var(--muted); margin:0 0 18px}
 .svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px 8px; margin-bottom:20px}
 .svc{display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center}
 .svc img{width:52px; height:52px; object-fit:contain}
 .svc span{font-size:.78rem; color:#4a3d43; font-weight:600; line-height:1.3}
-.order-btn{width:100%; height:54px; border:0; border-radius:14px; background:#0d1b4c; color:#fff; font-weight:800; font-size:1.05rem; font-family:inherit; cursor:pointer}
-.order-btn:hover{background:#1a2d6b}
+.order-btn{width:100%; height:54px; border:0; border-radius:14px; background:var(--green); color:#fff; font-weight:800; font-size:1.05rem; font-family:inherit; cursor:pointer}
+.order-btn:hover{background:var(--green-deep)}
 
 /* Gift sheet */
 .sheet-scrim{position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:120; opacity:0; pointer-events:none; transition:.25s}
@@ -77,7 +159,7 @@ h1,h2,h3{font-family:"Cairo","IBM Plex Sans Arabic",sans-serif; margin:0}
 .sheet.open{transform:none}
 .grab{width:44px; height:5px; border-radius:999px; background:var(--line); margin:10px auto}
 .sheet-in{max-width:1000px; margin:auto; padding:6px 18px 20px}
-.sheet-in h3{text-align:center; color:var(--maroon); font-size:1.35rem; font-weight:900}
+.sheet-in h3{text-align:center; color:var(--green); font-size:1.35rem; font-weight:900}
 .sheet-in .sub{text-align:center; color:var(--muted); margin:4px 0 20px}
 .watches{display:flex; flex-direction:column; gap:18px; max-width:520px; margin:auto}
 .wcard{border:1.5px solid var(--line); border-radius:20px; padding:18px; text-align:center; transition:.15s; background:#fff}
@@ -101,78 +183,15 @@ h1,h2,h3{font-family:"Cairo","IBM Plex Sans Arabic",sans-serif; margin:0}
 
 .warr{display:flex; align-items:center; justify-content:center; gap:8px; margin:2px 0 10px; color:#3a2f34; font-weight:800; font-size:.95rem}
 .warr img{height:22px; width:auto}
-.wcard > span{display:block; font-family:"Cairo","IBM Plex Sans Arabic",sans-serif; font-weight:900; font-size:1.15rem; color:#0d1b4c; margin:8px 0 4px}
-.wpick{width:100%; height:52px; font-size:1.05rem; border:1.5px solid #0d1b4c; background:#0d1b4c; color:#fff; border-radius:10px; font-weight:800; font-family:inherit; cursor:pointer}
-.wpick:hover{background:#1a2d6b!important}
-.wcard.sel .wpick{background:#fff!important; color:#0d1b4c!important; border-color:#0d1b4c!important}
+.wcard > span{display:block; font-family:"Cairo","IBM Plex Sans Arabic",sans-serif; font-weight:900; font-size:1.15rem; color:var(--green); margin:8px 0 4px}
+.wpick{width:100%; height:52px; font-size:1.05rem; border:1.5px solid var(--green); background:var(--green); color:#fff; border-radius:10px; font-weight:800; font-family:inherit; cursor:pointer}
+.wpick:hover{background:var(--green-deep)!important}
+.wcard.sel .wpick{background:#fff!important; color:var(--green)!important; border-color:var(--green)!important}
 .sheet-cta{position:sticky; bottom:0; z-index:2; background:linear-gradient(to top,#fff 70%,rgba(255,255,255,0)); padding:16px 0 calc(6px + env(safe-area-inset-bottom,0px)); margin-top:10px; display:none}
 .sheet-cta.show{display:block}
-.sheet-cta button{display:block; width:100%; max-width:520px; margin:auto; height:56px; border:0; border-radius:16px; background:#0d1b4c; color:#fff; font-weight:900; font-size:1.1rem; font-family:inherit; cursor:pointer; box-shadow:0 8px 24px rgba(13,27,76,.3)}
-.sheet-cta button:hover{background:#1a2d6b}
+.sheet-cta button{display:block; width:100%; max-width:520px; margin:auto; height:56px; border:0; border-radius:16px; background:var(--green); color:#fff; font-weight:900; font-size:1.1rem; font-family:inherit; cursor:pointer; box-shadow:0 8px 24px rgba(27,107,58,.3)}
+.sheet-cta button:hover{background:var(--green-deep)}
 
-/* Social row above footer */
-.ft-social-row{padding:20px 16px; text-align:center}
-.ft-social-icons{display:flex; justify-content:center; gap:10px}
-.ft-social-icons a{width:40px; height:40px; border-radius:50%; border:1.5px solid #bbb; color:#555; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all .2s}
-.ft-social-icons a:hover{border-color:var(--green); color:var(--green)}
-.ft-social-icons a svg{width:18px; height:18px}
-.share-bar{display:flex; align-items:center; justify-content:center; gap:10px; padding:14px 16px}
-.share-bar .share-title{font-weight:700; font-size:1.05rem; color:#707070; padding-inline-end:10px}
-.share-bar a{width:27px; height:27px; border-radius:2px; background:#707070; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none; transition:all .2s}
-.share-bar a:hover{background:#fff; color:#707070}
-.share-bar a svg{width:14px; height:14px}
-
-.newsletter{background:#799e91; padding:30px 16px; text-align:center}
-.newsletter-in{max-width:600px; margin:auto}
-.newsletter-title{color:#fff; font-weight:900; font-size:1.3rem; margin-bottom:8px; font-family:"Cairo","IBM Plex Sans Arabic",sans-serif}
-.newsletter-desc{color:#fff; font-size:.9rem; margin-bottom:16px; opacity:.9}
-.newsletter-group{position:relative; max-width:440px; margin:auto}
-.newsletter-group input{background-color:#fff; color:#707070; height:55px; line-height:55px; padding:0 100px 0 15px; width:100%; border:none; border-radius:2px; font-size:.95rem; font-family:inherit; outline:none}
-.newsletter-group button{background-color:#799e91; color:#fff; font-size:1rem; height:45px; line-height:45px; padding:0 30px; position:absolute; right:5px; top:5px; border:none; border-radius:2px; font-family:inherit; cursor:pointer; z-index:2; font-weight:700}
-.newsletter-group button:hover{background:#5d8272}
-
-/* Quick links */
-.quick-links{background:#f9f9f9; padding:40px 16px}
-.quick-links-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:600px; margin:auto}
-.quick-link{background:#fff; border-radius:2px; box-shadow:-16px 28px 40px rgba(0,0,0,.06); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:30px 15px; text-decoration:none; transition:box-shadow .3s}
-.quick-link:hover{box-shadow:-16px 28px 40px rgba(0,0,0,.12)}
-.quick-link svg{width:40px; height:40px; color:#799e91; margin-bottom:12px}
-.quick-link span{color:#707070; font-weight:700; font-size:.95rem; text-align:center}
-
-.ft-accordion{border-top:1px solid #ddd}
-.ft-acc-item{border-bottom:1px solid rgba(255,255,255,.2)}
-.ft-acc-title{display:flex; align-items:center; justify-content:space-between; background:#799e91; color:#fff; padding:8px 15px; cursor:pointer; font-weight:700; font-size:.95rem; border:none; width:100%; text-align:left; font-family:inherit; border-radius:2px}
-.ft-acc-title svg{width:18px; height:18px; transition:transform .3s; flex-shrink:0}
-.ft-acc-title.open svg{transform:rotate(180deg)}
-.ft-acc-content{display:none; background:#fff; padding:16px 20px}
-.ft-acc-content.open{display:block}
-.ft-acc-content ul{list-style:none; padding:0; margin:0}
-.ft-acc-content li{padding:6px 0; border-bottom:1px solid #eee}
-.ft-acc-content li:last-child{border:none}
-.ft-acc-content a{color:#333; text-decoration:none; font-size:.9rem}
-.ft-acc-content a:hover{color:var(--green)}
-.ft-acc-content .ft-phone{color:#333; font-size:1rem; font-weight:600; text-decoration:none; display:block; padding:4px 0}
-.ft-acc-social{display:flex; gap:10px; flex-wrap:wrap}
-.ft-acc-social a{width:23px; height:23px; border-radius:2px; background:#799e91; color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none; border:1px solid #799e91}
-.ft-acc-social a svg{width:11px; height:11px}
-.ft-acc-logo{margin-top:16px}
-.ft-acc-logo img{height:40px; width:auto}
-.sub-footer{text-align:center; padding:20px 16px; border-top:1px solid #ddd}
-.sub-footer .copyright{font-size:.85rem; color:#555; margin-bottom:10px}
-.sub-footer .pdic{display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:10px}
-.sub-footer .pdic img{height:35px; width:auto}
-.sub-footer .pdic span{font-size:.82rem; color:#555}
-.sub-footer .blue-sig{font-size:.8rem; color:#888}
-.sub-footer .blue-sig a{color:#888; text-decoration:none}
-.sub-footer .blue-sig img{height:20px; width:auto; display:inline-block; vertical-align:middle; margin-inline-start:4px}
-.chat-float{position:fixed; bottom:80px; right:16px; z-index:100; width:60px; height:60px; border-radius:50%; background:#163527; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(0,0,0,.25)}
-.chat-float svg{width:28px; height:28px; fill:#fff}
-.a11y-float{position:fixed; bottom:80px; left:16px; z-index:100; width:50px; height:50px; border-radius:50%; background:#F5C542; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.a11y-float svg{width:24px; height:24px; fill:#333}
-.mobile-bar{position:fixed; bottom:0; left:0; right:0; z-index:99; background:#fff; box-shadow:0 0 0 1px hsla(0,0%,72%,.1),0 2px 3px hsla(0,0%,55%,.2); display:flex; align-items:stretch; height:52px; padding-bottom:env(safe-area-inset-bottom,0px)}
-.mobile-bar a,.mobile-bar button{flex:1; display:flex; align-items:center; justify-content:center; background:none; border:none; border-inline-start:1px solid #f7e1f2; color:#a32786; font-size:.85rem; font-weight:700; cursor:pointer; text-decoration:none; font-family:inherit; padding:0}
-.mobile-bar a:first-child,.mobile-bar button:first-child{border-inline-start:none}
-.mobile-bar svg{width:22px; height:22px}
 body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 </style>
 </head>
@@ -182,45 +201,56 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
     <div class="brand">
       <a href="index-en.html"><img class="logo2" src="https://aib.ps/uc_files/image/resize/226/53/app_files/logopng_16691947964653877586094.png?vsig=fe3b85fa430300011345c623e9bc93d1" alt="Arab Islamic Bank" style="height:44px"></a>
     </div>
+    <nav><ul class="nav-menu">
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Personal Banking</a></li>
+      <li><a href="#">Business Banking</a></li>
+      <li><a href="#">Investor Relations</a></li>
+      <li><a href="#">Sustainability</a></li>
+      <li><a href="order-en.html">Contact Us</a></li>
+    </ul></nav>
   </div>
 </header>
 
 <section class="banner"><img src="banner-en.jpg" alt="AIB"></section>
+
 <main class="section">
   <div class="cards">
       <article class="card" data-plan="discount">
         <h3>Token Watch Features</h3>
-        <div class="card-media"><img src="card-watch-en.jpg" alt="Token Watch"></div>
+        <div class="card-media"><img src="card-watch-ar.jpg" alt="Token Device"></div>
         <p>A smart watch equipped with token technology to protect your bank accounts</p>
         <div class="svc-grid">
         <div class="svc"><img src="icon-105.jpg" alt="SIM Support"><span>SIM Support</span></div>
         <div class="svc"><img src="icon-106.jpg" alt="Wi-Fi Support"><span>Wi-Fi Support</span></div>
-        <div class="svc"><img src="icon-107.jpg" alt="14-day Battery"><span>14-day Battery</span></div>
+        <div class="svc"><img src="icon-107.jpg" alt="14-Day Battery"><span>14-Day Battery</span></div>
         <div class="svc"><img src="icon-108.jpg" alt="NFC Payment"><span>NFC Payment</span></div>
         <div class="svc"><img src="icon-109.jpg" alt="All Languages"><span>All Languages</span></div>
         <div class="svc"><img src="icon-110.jpg" alt="All Apps"><span>All Apps</span></div>
-        <div class="svc"><img src="icon-112.jpg" alt="Cybersecurity"><span>Cybersecurity</span></div>
+        <div class="svc"><img src="icon-112.jpg" alt="Cyber Security"><span>Cyber Security</span></div>
         <div class="svc"><img src="icon-111.jpg" alt="Fraud Protection"><span>Fraud Protection</span></div>
         <div class="svc"><img src="icon-114.jpg" alt="24/7 Protection"><span>24/7 Protection</span></div>
         </div>
-        <button type="button" class="order-btn" data-plan="discount">Order now</button>
+        
+        <button type="button" class="order-btn" data-plan="discount">Order Now</button>
       </article>
       <article class="card" data-plan="prepaid">
         <h3>Token Watch Features</h3>
-<div class="card-media"><img src="card-cards-en.jpg" alt="AIB Cards"></div>
+        <div class="card-media"><img src="card-cards-ar.jpg" alt="AIB Cards"></div>
         <p>A smart watch equipped with token technology to protect your bank accounts</p>
         <div class="svc-grid">
         <div class="svc"><img src="icon-105.jpg" alt="SIM Support"><span>SIM Support</span></div>
         <div class="svc"><img src="icon-106.jpg" alt="Wi-Fi Support"><span>Wi-Fi Support</span></div>
-        <div class="svc"><img src="icon-107.jpg" alt="14-day Battery"><span>14-day Battery</span></div>
+        <div class="svc"><img src="icon-107.jpg" alt="14-Day Battery"><span>14-Day Battery</span></div>
         <div class="svc"><img src="icon-108.jpg" alt="NFC Payment"><span>NFC Payment</span></div>
         <div class="svc"><img src="icon-109.jpg" alt="All Languages"><span>All Languages</span></div>
         <div class="svc"><img src="icon-110.jpg" alt="All Apps"><span>All Apps</span></div>
-        <div class="svc"><img src="icon-112.jpg" alt="Cybersecurity"><span>Cybersecurity</span></div>
+        <div class="svc"><img src="icon-112.jpg" alt="Cyber Security"><span>Cyber Security</span></div>
         <div class="svc"><img src="icon-111.jpg" alt="Fraud Protection"><span>Fraud Protection</span></div>
         <div class="svc"><img src="icon-114.jpg" alt="24/7 Protection"><span>24/7 Protection</span></div>
         </div>
-        <button type="button" class="order-btn" data-plan="prepaid">Order now</button>
+        
+        <button type="button" class="order-btn" data-plan="prepaid">Order Now</button>
       </article>
   </div>
 </main>
@@ -275,7 +305,7 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
         <button type="button" class="wpick" data-w="silver">Choose your watch</button>
       </div>
       <div class="wcard" data-w="skyblue">
-        <img src="watch-24.jpg" alt="Sky blue" loading="lazy">
+        <img src="watch-24.jpg" alt="Sky Blue" loading="lazy">
         <span>Free for a limited time</span>
         <div class="warr"><img src="data:image/jpeg;base64,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" alt="Apple">With one-year Apple warranty</div>
         <div class="wfeats"><div class="wf"><i class="fi fi-nfc"></i></div><div class="wf"><i class="fi fi-apps"></i></div><div class="wf"><i class="fi fi-lang"></i></div><div class="wf"><i class="fi fi-sim"></i></div><div class="wf"><i class="fi fi-wifi"></i></div><div class="wf"><i class="fi fi-bat"></i></div><div class="wf"><i class="fi fi-fraud"></i></div><div class="wf"><i class="fi fi-security"></i></div><div class="wf"><i class="fi fi-easy"></i></div><div class="wf"><i class="fi fi-247"></i></div><div class="wf"><i class="fi fi-transfer"></i></div></div>
@@ -289,7 +319,7 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
         <button type="button" class="wpick" data-w="white">Choose your watch</button>
       </div>
       <div class="wcard" data-w="darkred">
-        <img src="watch-21.jpg" alt="Dark red" loading="lazy">
+        <img src="watch-21.jpg" alt="Wine" loading="lazy">
         <span>Free for a limited time</span>
         <div class="warr"><img src="data:image/jpeg;base64,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" alt="Apple">With one-year Apple warranty</div>
         <div class="wfeats"><div class="wf"><i class="fi fi-nfc"></i></div><div class="wf"><i class="fi fi-apps"></i></div><div class="wf"><i class="fi fi-lang"></i></div><div class="wf"><i class="fi fi-sim"></i></div><div class="wf"><i class="fi fi-wifi"></i></div><div class="wf"><i class="fi fi-bat"></i></div><div class="wf"><i class="fi fi-fraud"></i></div><div class="wf"><i class="fi fi-security"></i></div><div class="wf"><i class="fi fi-easy"></i></div><div class="wf"><i class="fi fi-247"></i></div><div class="wf"><i class="fi fi-transfer"></i></div></div>
@@ -402,12 +432,12 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 <!-- Social icons row -->
 <div class="ft-social-row">
   <div class="ft-social-icons">
-    <a href="https://www.facebook.com/ArabIslamicBank/" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-    <a href="https://twitter.com/ArabIslamicBank" target="_blank" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-    <a href="https://www.instagram.com/arab_islamic_bank/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
-    <a href="https://www.linkedin.com/company/arab-islamic-bank/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-    <a href="https://www.youtube.com/channel/UC9hbL1SzA_yNap0iRJupFag" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
     <a href="https://wa.me/970566242242" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+    <a href="https://www.youtube.com/channel/UC9hbL1SzA_yNap0iRJupFag" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://www.linkedin.com/company/arab-islamic-bank/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a href="https://www.instagram.com/arab_islamic_bank/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+    <a href="https://twitter.com/ArabIslamicBank" target="_blank" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://www.facebook.com/ArabIslamicBank/" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
   </div>
 </div>
 
@@ -433,12 +463,12 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
         <li><a href="#">Careers</a></li>
         <li><a href="#">Complaints</a></li>
         <li><a href="#">Campaigns</a></li>
-        <li><a href="#">Online Applications</a></li>
+        <li><a href="#">Online Requests</a></li>
         <li><a href="#">Governance Guide</a></li>
         <li><a href="#">Information Security Policy</a></li>
         <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Fees & Commissions</a></li>
-        <li><a href="#">Working Hours</a></li>
+        <li><a href="#">Fees and Commissions Schedule</a></li>
+        <li><a href="#">Official Working Hours</a></li>
       </ul>
     </div>
   </div>
@@ -450,7 +480,7 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
     <div class="ft-acc-content">
       <ul>
         <li><a href="https://www.pma.ps/en/" target="_blank">Palestine Monetary Authority</a></li>
-        <li><a href="https://www.abp.ps/en" target="_blank">Association of Banks in Palestine</a></li>
+        <li><a href="https://www.abp.ps/en" target="_blank">Palestine Banks Association</a></li>
         <li><a href="https://www.pdic.ps/" target="_blank">Palestine Deposit Insurance Corporation</a></li>
         <li><a href="https://web.pex.ps/" target="_blank">Palestine Exchange</a></li>
       </ul>
@@ -498,13 +528,13 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 
 <!-- Sub-footer -->
 <div class="sub-footer">
-  <p class="copyright">All rights reserved for Arab Islamic Bank &copy; 2026</p>
+  <p class="copyright">All rights reserved to Arab Islamic Bank &copy; 2026</p>
   <div class="pdic">
     <img src="https://aib.ps/themes/default/assets/images/pdic.png?v=1698251006110994" alt="Palestine Deposit Insurance Corporation">
-    <span>Member of Palestine Deposit Insurance Corporation</span>
+    <span>The bank is a member of the Palestine Deposit Insurance Corporation</span>
   </div>
   <div class="blue-sig">
-    Designed &amp; Developed by
+    Designed and developed by
     <a href="https://www.blue.ps" target="_blank"><img src="https://www.blue.ps/permanent-data/powered_by.png" alt="Blue"></a>
   </div>
 </div>
@@ -514,7 +544,7 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 <nav class="mobile-bar">
   <a href="#" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></a>
   <a href="#" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></a>
-  <a href="index.html" style="font-weight:700;font-size:.95rem">عربي</a>
+  <a href="index.html" style="font-weight:700;font-size:.95rem">Ar</a>
   <a href="#" aria-label="My Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
 </nav>
 
@@ -538,7 +568,7 @@ document.querySelectorAll(".wpick").forEach(b => b.onclick = () => {
   document.querySelectorAll(".wcard").forEach(c => {
     const on = c.dataset.w === selectedWatch;
     c.classList.toggle("sel", on);
-    c.querySelector(".wpick").textContent = on ? "✓ تم الاختيار" : "Choose your watch";
+    c.querySelector(".wpick").textContent = on ? "✓ Selected" : "Choose your watch";
   });
   $("cta").classList.add("show");
 });
