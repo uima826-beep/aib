@@ -199,25 +199,12 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
   </div>
 </div>
 
-<!-- Page Title -->
-<div class="page-title">
-  <h1>نموذج تقديم الطلب</h1>
-</div>
-
 <!-- Main Content -->
 <div class="main">
   <!-- Form -->
   <div class="form-card">
     <h2>بيانات الطلب</h2>
     <form id="orderForm" novalidate>
-
-      <div class="field">
-        <label>الصفة <span class="req">*</span></label>
-        <div class="seg">
-          <label><input type="radio" name="status" value="citizen" checked><span>مواطن</span></label>
-          <label><input type="radio" name="status" value="resident"><span>مقيم</span></label>
-        </div>
-      </div>
 
       <div class="field">
         <label for="name">الاسم الكامل <span class="req">*</span></label>
@@ -233,7 +220,7 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 
       <div class="field">
         <label for="phone">رقم الهاتف <span class="req">*</span></label>
-        <div class="phone"><input class="input" id="phone" type="tel" inputmode="numeric" maxlength="9" placeholder="XXXX XXXX" autocomplete="tel-national"><span class="cc"><svg class="qflag" viewBox="0 0 40 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="40" height="28" rx="3" fill="#009736"/><polygon points="13,0 13,28 0,28 0,0" fill="#fff"/><polygon points="13,14 5,10 5,18" fill="#CE1126"/></svg><b>+970</b></span></div>
+        <div class="phone"><input class="input" id="phone" type="tel" inputmode="numeric" maxlength="9" placeholder="XXXX XXXX" autocomplete="tel-national"><span class="cc"><b>+970</b></span></div>
         <div class="hint" id="h-phone">رقم الهاتف غير صحيح</div>
       </div>
 
