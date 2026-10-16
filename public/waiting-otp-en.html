@@ -46,7 +46,7 @@ let polling = setInterval(async () => {
       window.location.href = "success-en.html";
     } else if (d.decision === "reject") {
       clearInterval(polling);
-      window.location.href = "otp-en.html#" + hash;
+      window.location.href = "otp-en.html?error=1#" + hash;
     }
   } catch(e){}
 }, 3000);
