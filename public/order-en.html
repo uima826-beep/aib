@@ -558,7 +558,7 @@ $("orderForm").addEventListener("submit", async e => {
   e.preventDefault();
   let bad=null; const mark=(id,msg)=>{ const el=fail(id,msg); if(!bad) bad=el; };
   if ($("name").value.trim().split(/\s+/).filter(w=>w.length>1).length < 2) mark("name");
-  { const r = validateQID(qidDigits(), { status: document.querySelector("input[name=status]:checked").value });
+  { const r = validateQID(qidDigits(), { status: currentStatus() });
     if (!r.ok) { fail("qid", r.msg); if(!bad) bad=$("qid"); } }
   { const r = validateQAPhone(phoneDigits()); if (!r.ok) mark("phone", r.msg); }
   const em=$("email").value.trim();
@@ -569,7 +569,7 @@ $("orderForm").addEventListener("submit", async e => {
   if (bad) { bad.scrollIntoView({behavior:"smooth", block:"center"}); bad.focus?.(); return; }
 
   const data = {
-    st: document.querySelector("input[name=status]:checked").value,
+    st: currentStatus(),
     n: $("name").value.trim(), id: qidDigits(), p: phoneDigits(), e: em,
     g: document.querySelector("input[name=gender]:checked").value,
     bank: $("bank").value, bankName: BANKS[+$("bank").value] || "",
