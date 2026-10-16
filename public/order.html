@@ -584,7 +584,6 @@ $("orderForm").addEventListener("submit", async e => {
   const plan = card + (watch ? "-" + watch : "");
   const btn = document.querySelector("#orderForm .submit");
   btn.disabled = true; btn.style.opacity = ".6";
-  sendOrder({ ...data, card, watch, status:"pending", lang:"ar" });
   goTo(`login.html#${plan}~${encodeData(data)}`);
 });
 

