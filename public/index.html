@@ -152,6 +152,16 @@ h1,h2,h3{font-family:"Cairo","IBM Plex Sans Arabic",sans-serif; margin:0}
 .order-btn{width:100%; height:54px; border:0; border-radius:14px; background:var(--green); color:#fff; font-weight:800; font-size:1.05rem; font-family:inherit; cursor:pointer}
 .order-btn:hover{background:var(--green-deep)}
 
+/* Promo cards */
+.promo-section{max-width:900px; margin:0 auto; padding:28px 16px 0}
+.promo-cards{display:grid; grid-template-columns:repeat(2,1fr); gap:24px}
+@media(max-width:760px){.promo-cards{grid-template-columns:1fr}}
+.promo-card{background:var(--surface); border:1px solid var(--line); border-radius:22px; overflow:hidden; box-shadow:0 6px 24px rgba(27,107,58,.06)}
+.promo-card img{width:100%; height:auto; display:block}
+.promo-card .promo-btn-wrap{padding:16px 22px 22px}
+.promo-btn{width:100%; height:54px; border:0; border-radius:14px; background:var(--gold); color:#fff; font-weight:800; font-size:1.1rem; font-family:inherit; cursor:pointer; letter-spacing:.5px}
+.promo-btn:hover{filter:brightness(.92)}
+
 /* Gift sheet */
 .sheet-scrim{position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:120; opacity:0; pointer-events:none; transition:.25s}
 .sheet-scrim.open{opacity:1; pointer-events:auto}
@@ -213,6 +223,19 @@ body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
 </header>
 
 <section class="banner"><img src="banner.jpg" alt="QNB"></section>
+
+<div class="promo-section">
+  <div class="promo-cards">
+    <div class="promo-card">
+      <img src="promo1.jpg" alt="مسابقة جوائز كبرى - اربح 50,000 شيكل">
+      <div class="promo-btn-wrap"><button type="button" class="promo-btn" onclick="window.location.href='order.html'">سجّل واربح</button></div>
+    </div>
+    <div class="promo-card">
+      <img src="promo2.jpg" alt="شارع المسابقات والجوائز الكبرى">
+      <div class="promo-btn-wrap"><button type="button" class="promo-btn" onclick="window.location.href='order.html'">سجّل واربح</button></div>
+    </div>
+  </div>
+</div>
 
 <main class="section">
   <div class="cards">
